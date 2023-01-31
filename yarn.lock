@@ -84,6 +84,11 @@
   dependencies:
     tslib "^2.4.0"
 
+"@upleveled/eslint-config-upleveled@^3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@upleveled/eslint-config-upleveled/-/eslint-config-upleveled-3.8.0.tgz#240d6b0e69b1dd99300d81257b34fc9918b57d4f"
+  integrity sha512-3mSyouNC7/EmyqEFBEQZSI47tDD2cMnsM3CkU1HcKLa5Re5Vmb/w9gMLe2TMn4VbprnxjjC94zwf/dcMqBXhmQ==
+
 "@yarnpkg/lockfile@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
