@@ -9,15 +9,13 @@ export default function Art() {
       <h1>Art</h1>
       <main>
         {artPieces.map((artPiece) => {
-          console.log(artPiece);
-
           return (
             <Fragment key={artPiece.id}>
-              <Link href={`/artpieces/${artPiece.name.toLocaleLowerCase()}`}>
+              <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
                 <h2 key={artPiece.id}>{artPiece.name}</h2>
               </Link>
 
-              <Link href={`/artpieces/${artPiece.name.toLocaleLowerCase()}`}>
+              <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
                 <Image
                   src={`/images/${artPiece.name}-${artPiece.id}.png`}
                   alt={artPiece.type}
