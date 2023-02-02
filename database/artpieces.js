@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 
 export const artPieces = [
-  { id: 1, name: 'These Days', type: 'painting', style: 'reneissance' },
-  { id: 2, name: 'The Launch', type: 'painting', style: 'impressionism' },
-  { id: 3, name: 'Powerlaunch', type: 'painting', style: 'impressionism' },
-  { id: 4, name: 'Shoes', type: 'painting', style: 'realism' },
-  { id: 5, name: 'New Frontiers', type: 'painting', style: 'surrealism' },
+  { id: 1, name: 'Phone', type: 'Painting', style: 'Reneissance' },
+  { id: 2, name: 'Launch', type: 'Painting', style: 'Impressionism' },
+  { id: 3, name: 'Powerlaunch', type: 'Painting', style: 'Impressionism' },
+  { id: 4, name: 'Shoes', type: 'Painting', style: 'Realism' },
+  { id: 5, name: 'Liberty', type: 'Painting', style: 'Surrealism' },
 ];
