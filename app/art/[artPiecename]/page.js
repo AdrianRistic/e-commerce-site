@@ -1,16 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { artPieces } from '../../../database/artpieces';
 
 export const dynamic = 'force-dynamic';
 
-export default function Arts(props) {
+export default function Arts({ params }) {
   const singleartPiece = artPieces.find((artPiece) => {
-    return artPiece.name.toLowerCase() === props.params.artPiecename;
+    return artPiece.name.toLowerCase() === params.artPiecename;
   });
 
   console.log(singleartPiece);
 
+  if (!singleartPiece) {
+    throw new Error('This action goes against the rules, bud!');
+
+    //notFound();
+  }
   return (
     <>
       <h1>{singleartPiece.name}</h1>
