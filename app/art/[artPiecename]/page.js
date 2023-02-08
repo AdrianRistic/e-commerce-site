@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { artPieces } from '../../../database/artpieces';
+import ArtPiece from './artPiece';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,22 +18,5 @@ export default function Arts({ params }) {
 
     //notFound();
   }
-  return (
-    <>
-      <h1>{singleartPiece.name}</h1>
-
-      <main>
-        This is a {singleartPiece.type} in the {singleartPiece.style} - Style
-      </main>
-
-      <Link href={`/art/${singleartPiece.name.toLocaleLowerCase()}`}>
-        <Image
-          src={`/images/${singleartPiece.name}-${singleartPiece.id}.png`}
-          alt={singleartPiece.type}
-          width="200"
-          height="200"
-        />
-      </Link>
-    </>
-  );
+  return <ArtPiece artPiece={singleartPiece} />;
 }
