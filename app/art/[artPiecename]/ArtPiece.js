@@ -23,7 +23,6 @@ export default function ArtPiece(props) {
           height="200"
         />
       </Link>
-      <button>-⭐️</button>
       <button
         onClick={() => {
           const artPiecesinCookies = getParsedCookie('artPiecesCookie');
@@ -49,6 +48,33 @@ export default function ArtPiece(props) {
         }}
       >
         +⭐️
+      </button>
+      <button
+        onClick={() => {
+          const artPiecesinCookies = getParsedCookie('artPiecesCookie');
+
+          if (!artPiecesinCookies) {
+            return;
+          }
+
+          const foundArt = artPiecesinCookies.find((artPieceInCookie) => {
+            return artPieceInCookie.id === props.artPiece.id;
+          });
+
+          if (foundArt) {
+            foundArt.stars--;
+
+            if (foundArt.stars < 0) {
+              foundArt.stars = 0;
+            }
+          } else {
+            return;
+          }
+
+          setStringifiedCookie('artPiecesCookie', artPiecesinCookies);
+        }}
+      >
+        -⭐️
       </button>
     </>
   );
