@@ -12,6 +12,7 @@ export default function RootLayout({ children }) {
             <div>
               <Link href="/">Home</Link>
               <Link href="/art">Art</Link>
+              <Link href="/cart">Cart</Link>
             </div>
           </nav>
         </header>

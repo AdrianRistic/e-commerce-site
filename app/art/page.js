@@ -5,8 +5,8 @@ import { Fragment } from 'react';
 import { artPieces } from '../../database/artpieces';
 
 export default function Art() {
-  /*const artPiecesCookie = cookies().get('artPiecescookie');
-
+  const artPiecesCookie = cookies().get('artPiecesCookie');
+  console.log(artPiecesCookie);
   let artPiecesCookieParsed = [];
 
   if (artPiecesCookie) {
@@ -24,12 +24,14 @@ export default function Art() {
     }
     return artPieceWithStars;
   });
-*/
+
+  console.log(artPiecesWithStars);
+
   return (
     <>
       <h1>Art</h1>
       <main>
-        {artPieces.map((artPiece) => {
+        {artPiecesWithStars.map((artPiece) => {
           return (
             <Fragment key={artPiece.id}>
               <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
