@@ -25,16 +25,16 @@ export default function cart() {
     return artPieceWithStars;
   });
   //console.log(artPiecesWithStars);
-  const filteredItems = artPiecesWithStars.filter(
+  const filteredArtPieces = artPiecesWithStars.filter(
     (artPieceWithStars) => artPieceWithStars.stars > 0,
   );
-  console.log(filteredItems);
+  console.log(filteredArtPieces);
 
   return (
     <>
       <h1>These Items are in your Cart</h1>
       <main>
-        {filteredItems.map((artPiece) => {
+        {filteredArtPieces.map((artPiece) => {
           return (
             <Fragment key={artPiece.id}>
               <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
