@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 import { artPieces } from '../../database/artpieces';
 
 export default function Art() {
-  const artPiecesCookie = cookies().get('artPiecescookie');
+  /*const artPiecesCookie = cookies().get('artPiecescookie');
 
   let artPiecesCookieParsed = [];
 
@@ -24,7 +24,7 @@ export default function Art() {
     }
     return artPieceWithStars;
   });
-
+*/
   return (
     <>
       <h1>Art</h1>
