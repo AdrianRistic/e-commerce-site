@@ -13,20 +13,25 @@ export default function cart() {
     artPiecesCookieParsed = JSON.parse(artPiecesCookie.value);
   }
 
-  const artPiecesWithStars = artPieces.map((artPiece) => {
-    const artPieceWithStars = { ...artPiece, stars: 0 };
+  const artPiecesWithquantity = artPieces.map((artPiece) => {
+    const artPieceWithquantity = { ...artPiece, quantity: 0 };
     const artPieceinCoookie = artPiecesCookieParsed.find(
       (artPieceObject) => artPiece.id === artPieceObject.id,
     );
 
     if (artPieceinCoookie) {
-      artPieceWithStars.stars = artPieceinCoookie.stars;
+      artPieceWithquantity.quantity = artPieceinCoookie.quantity;
     }
-    return artPieceWithStars;
+    return artPieceWithquantity;
   });
-  //console.log(artPiecesWithStars);
-  const filteredArtPieces = artPiecesWithStars.filter(
-    (artPieceWithStars) => artPieceWithStars.stars > 0,
+  //console.log(artPiecesWithquantity);
+  const filteredArtPieces = artPiecesWithquantity.filter(
+    (artPieceWithquantity) => artPieceWithquantity.quantity > 0,
+  );
+
+  const totalPrice = filteredArtPieces.reduce(
+    (acc, piece) => acc + parseFloat(piece.price * piece.quantity),
+    0,
   );
   console.log(filteredArtPieces);
 
@@ -36,21 +41,32 @@ export default function cart() {
       <main>
         {filteredArtPieces.map((artPiece) => {
           return (
-            <Fragment key={artPiece.id}>
-              <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
-                <h2 key={artPiece.id}>{artPiece.name}</h2>
-              </Link>
+            <>
+              <Fragment key={artPiece.id}>
+                <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
+                  <h2 key={artPiece.id}>{artPiece.name}</h2>
+                </Link>
 
-              <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
-                <Image
-                  src={`/images/${artPiece.name}-${artPiece.id}.png`}
-                  alt={artPiece.type}
-                  width="200"
-                  height="200"
-                />
-                <p>stars: {artPiece.stars}</p>
-              </Link>
-            </Fragment>
+                <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
+                  <Image
+                    src={`/images/${artPiece.name}-${artPiece.id}.png`}
+                    alt={artPiece.type}
+                    width="200"
+                    height="200"
+                  />
+                  <p>quantity: {artPiece.quantity}</p>
+                </Link>
+              </Fragment>
+              <Fragment>
+                <p>Total:</p>
+                {totalPrice}
+              </Fragment>
+              <Fragment>
+                <Link href={`/checkout`}>
+                  <h2>Checkout</h2>
+                </Link>
+              </Fragment>
+            </>
           );
         })}
       </main>

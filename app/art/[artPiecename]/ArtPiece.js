@@ -29,7 +29,7 @@ export default function ArtPiece(props) {
 
           if (!artPiecesinCookies) {
             setStringifiedCookie('artPiecesCookie', [
-              { id: props.artPiece.id, stars: 1 },
+              { id: props.artPiece.id, quantity: 1 },
             ]);
             return;
           }
@@ -39,9 +39,9 @@ export default function ArtPiece(props) {
           });
 
           if (foundArt) {
-            foundArt.stars++;
+            foundArt.quantity++;
           } else {
-            artPiecesinCookies.push({ id: props.artPiece.id, stars: 1 });
+            artPiecesinCookies.push({ id: props.artPiece.id, quantity: 1 });
           }
 
           setStringifiedCookie('artPiecesCookie', artPiecesinCookies);
@@ -62,10 +62,10 @@ export default function ArtPiece(props) {
           });
 
           if (foundArt) {
-            foundArt.stars--;
+            foundArt.quantity--;
 
-            if (foundArt.stars < 0) {
-              foundArt.stars = 0;
+            if (foundArt.quantity < 0) {
+              foundArt.quantity = 0;
             }
           } else {
             return;

@@ -13,23 +13,23 @@ export default function Art() {
     artPiecesCookieParsed = JSON.parse(artPiecesCookie.value);
   }
 
-  const artPiecesWithStars = artPieces.map((artPiece) => {
-    const artPieceWithStars = { ...artPiece, stars: 0 };
+  const artPiecesWithquantity = artPieces.map((artPiece) => {
+    const artPieceWithquantity = { ...artPiece, quantity: 0 };
     const artPieceinCoookie = artPiecesCookieParsed.find(
       (artPieceObject) => artPiece.id === artPieceObject.id,
     );
 
     if (artPieceinCoookie) {
-      artPieceWithStars.stars = artPieceinCoookie.stars;
+      artPieceWithquantity.quantity = artPieceinCoookie.quantity;
     }
-    return artPieceWithStars;
+    return artPieceWithquantity;
   });
 
   return (
     <>
       <h1>Art</h1>
       <main>
-        {artPiecesWithStars.map((artPiece) => {
+        {artPiecesWithquantity.map((artPiece) => {
           return (
             <Fragment key={artPiece.id}>
               <Link href={`/art/${artPiece.name.toLocaleLowerCase()}`}>
@@ -43,7 +43,7 @@ export default function Art() {
                   width="200"
                   height="200"
                 />
-                <p>stars: {artPiece.stars}</p>
+                <p>Price: {artPiece.price} </p>
               </Link>
             </Fragment>
           );
