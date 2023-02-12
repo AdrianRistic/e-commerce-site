@@ -11,8 +11,6 @@ export default function Arts({ params }) {
     return artPiece.name.toLowerCase() === params.artPiecename;
   });
 
-  console.log(singleartPiece);
-
   if (!singleartPiece) {
     throw new Error('This action goes against the rules, bud!');
 

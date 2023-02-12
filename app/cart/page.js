@@ -24,7 +24,7 @@ export default function cart() {
     }
     return artPieceWithquantity;
   });
-  //console.log(artPiecesWithquantity);
+
   const filteredArtPieces = artPiecesWithquantity.filter(
     (artPieceWithquantity) => artPieceWithquantity.quantity > 0,
   );
@@ -33,7 +33,12 @@ export default function cart() {
     (acc, piece) => acc + parseFloat(piece.price * piece.quantity),
     0,
   );
-  console.log(filteredArtPieces);
+
+  const totalArtPieces = filteredArtPieces.reduce(
+    (acc, piece) => acc + piece.quantity,
+    0,
+  );
+  //console.log(totalArtPieces);
 
   return (
     <>
@@ -54,21 +59,21 @@ export default function cart() {
                     width="200"
                     height="200"
                   />
+                  <p>Price: {artPiece.price} </p>
                   <p>quantity: {artPiece.quantity}</p>
-                </Link>
-              </Fragment>
-              <Fragment>
-                <p>Total:</p>
-                {totalPrice}
-              </Fragment>
-              <Fragment>
-                <Link href={`/checkout`}>
-                  <h2>Checkout</h2>
                 </Link>
               </Fragment>
             </>
           );
         })}
+        <p>There are currently {totalArtPieces} items in your cart.</p>
+        <p>Total:</p>
+        <p>{totalPrice}</p>
+        <Fragment>
+          <Link href={`/checkout`}>
+            <h2>Checkout➡️</h2>
+          </Link>
+        </Fragment>
       </main>
     </>
   );
