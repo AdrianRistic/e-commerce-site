@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { artPieces } from '../../database/artpieces';
+import RemoveButton from './removebutton';
 
 export default function cart() {
   const cart = cookies().get('cart');
@@ -39,18 +40,6 @@ export default function cart() {
     0,
   );
 
-  function removeArtPiece(id) {
-    const updatedArtPieces = filteredArtPieces.filter((artPiece) => {
-      return artPiece.id !== id;
-    });
-
-    return updatedArtPieces;
-  }
-
-  const removedArtPieces = removeArtPiece(2);
-
-  console.log(removedArtPieces);
-
   return (
     <>
       <h1>These Items are in your Cart</h1>
@@ -74,7 +63,7 @@ export default function cart() {
                   <p>quantity: {artPiece.quantity}</p>
                 </Link>
               </Fragment>
-              <button>Remove item(s)</button>
+              <RemoveButton current={artPiece} parsed={cartParsed} />
             </>
           );
         })}
