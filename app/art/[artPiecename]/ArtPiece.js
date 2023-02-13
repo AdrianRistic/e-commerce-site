@@ -2,11 +2,14 @@
 import { getParsedCookie, setStringifiedCookie } from '@/utils/cookies';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export const dynamic = 'force-dynamic';
 
 export default function ArtPiece(props) {
+  const router = useRouter();
+
   return (
     <>
       <h1>{props.artPiece.name}</h1>
@@ -31,10 +34,12 @@ export default function ArtPiece(props) {
             setStringifiedCookie('artPiecesCookie', [
               { id: props.artPiece.id, quantity: 1 },
             ]);
+            router.refresh();
             return;
           }
 
           const foundArt = artPiecesinCookies.find((artPieceInCookie) => {
+            router.refresh();
             return artPieceInCookie.id === props.artPiece.id;
           });
 
@@ -43,7 +48,7 @@ export default function ArtPiece(props) {
           } else {
             artPiecesinCookies.push({ id: props.artPiece.id, quantity: 1 });
           }
-
+          router.refresh();
           setStringifiedCookie('artPiecesCookie', artPiecesinCookies);
         }}
       >
@@ -54,10 +59,12 @@ export default function ArtPiece(props) {
           const artPiecesinCookies = getParsedCookie('artPiecesCookie');
 
           if (!artPiecesinCookies) {
+            router.refresh();
             return;
           }
 
           const foundArt = artPiecesinCookies.find((artPieceInCookie) => {
+            router.refresh();
             return artPieceInCookie.id === props.artPiece.id;
           });
 
@@ -68,6 +75,7 @@ export default function ArtPiece(props) {
               foundArt.quantity = 0;
             }
           } else {
+            router.refresh();
             return;
           }
 

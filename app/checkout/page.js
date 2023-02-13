@@ -1,7 +1,47 @@
+import { cookies } from 'next/headers';
+import { artPieces } from '../../database/artpieces';
+
 export default function checkOut() {
+  const artPiecesCookie = cookies().get('artPiecesCookie');
+
+  let artPiecesCookieParsed = [];
+
+  if (artPiecesCookie) {
+    artPiecesCookieParsed = JSON.parse(artPiecesCookie.value);
+  }
+
+  const artPiecesWithquantity = artPieces.map((artPiece) => {
+    const artPieceWithquantity = { ...artPiece, quantity: 0 };
+    const artPieceinCoookie = artPiecesCookieParsed.find(
+      (artPieceObject) => artPiece.id === artPieceObject.id,
+    );
+
+    if (artPieceinCoookie) {
+      artPieceWithquantity.quantity = artPieceinCoookie.quantity;
+    }
+    return artPieceWithquantity;
+  });
+
+  const filteredArtPieces = artPiecesWithquantity.filter(
+    (artPieceWithquantity) => artPieceWithquantity.quantity > 0,
+  );
+
+  const totalPrice = filteredArtPieces.reduce(
+    (acc, piece) => acc + parseFloat(piece.price * piece.quantity),
+    0,
+  );
+
+  const totalArtPieces = filteredArtPieces.reduce(
+    (acc, piece) => acc + piece.quantity,
+    0,
+  );
+
   return (
     <>
       <h1>Checkout:</h1>
+
+      <h2>Total: {totalPrice} </h2>
+
       <p>First Name:</p>
       <input></input>
       <p> Last Name:</p>
