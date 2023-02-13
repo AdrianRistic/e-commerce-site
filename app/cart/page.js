@@ -38,6 +38,19 @@ export default function cart() {
     (acc, piece) => acc + piece.quantity,
     0,
   );
+
+  function removeArtPiece(id) {
+    const updatedArtPieces = filteredArtPieces.filter((artPiece) => {
+      return artPiece.id !== id;
+    });
+
+    return updatedArtPieces;
+  }
+
+  const removedArtPieces = removeArtPiece(2);
+
+  console.log(removedArtPieces);
+
   return (
     <>
       <h1>These Items are in your Cart</h1>
