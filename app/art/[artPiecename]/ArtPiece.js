@@ -28,10 +28,10 @@ export default function ArtPiece(props) {
       </Link>
       <button
         onClick={() => {
-          const artPiecesinCookies = getParsedCookie('artPiecesCookie');
+          const artPiecesinCookies = getParsedCookie('cart');
 
           if (!artPiecesinCookies) {
-            setStringifiedCookie('artPiecesCookie', [
+            setStringifiedCookie('cart', [
               { id: props.artPiece.id, quantity: 1 },
             ]);
             router.refresh();
@@ -49,14 +49,14 @@ export default function ArtPiece(props) {
             artPiecesinCookies.push({ id: props.artPiece.id, quantity: 1 });
           }
           router.refresh();
-          setStringifiedCookie('artPiecesCookie', artPiecesinCookies);
+          setStringifiedCookie('cart', artPiecesinCookies);
         }}
       >
         +⭐️
       </button>
       <button
         onClick={() => {
-          const artPiecesinCookies = getParsedCookie('artPiecesCookie');
+          const artPiecesinCookies = getParsedCookie('cart');
 
           if (!artPiecesinCookies) {
             router.refresh();
@@ -79,7 +79,7 @@ export default function ArtPiece(props) {
             return;
           }
 
-          setStringifiedCookie('artPiecesCookie', artPiecesinCookies);
+          setStringifiedCookie('cart', artPiecesinCookies);
         }}
       >
         -⭐️

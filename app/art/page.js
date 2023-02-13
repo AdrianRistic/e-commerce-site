@@ -5,17 +5,17 @@ import { Fragment } from 'react';
 import { artPieces } from '../../database/artpieces';
 
 export default function Art() {
-  const artPiecesCookie = cookies().get('artPiecesCookie');
+  const cart = cookies().get('cart');
 
-  let artPiecesCookieParsed = [];
+  let cartParsed = [];
 
-  if (artPiecesCookie) {
-    artPiecesCookieParsed = JSON.parse(artPiecesCookie.value);
+  if (cart) {
+    cartParsed = JSON.parse(cart.value);
   }
 
   const artPiecesWithquantity = artPieces.map((artPiece) => {
     const artPieceWithquantity = { ...artPiece, quantity: 0 };
-    const artPieceinCoookie = artPiecesCookieParsed.find(
+    const artPieceinCoookie = cartParsed.find(
       (artPieceObject) => artPiece.id === artPieceObject.id,
     );
 

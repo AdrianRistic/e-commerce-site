@@ -5,17 +5,17 @@ import { Fragment } from 'react';
 import { artPieces } from '../../database/artpieces';
 
 export default function cart() {
-  const artPiecesCookie = cookies().get('artPiecesCookie');
+  const cart = cookies().get('cart');
 
-  let artPiecesCookieParsed = [];
+  let cartParsed = [];
 
-  if (artPiecesCookie) {
-    artPiecesCookieParsed = JSON.parse(artPiecesCookie.value);
+  if (cart) {
+    cartParsed = JSON.parse(cart.value);
   }
 
   const artPiecesWithquantity = artPieces.map((artPiece) => {
     const artPieceWithquantity = { ...artPiece, quantity: 0 };
-    const artPieceinCoookie = artPiecesCookieParsed.find(
+    const artPieceinCoookie = cartParsed.find(
       (artPieceObject) => artPiece.id === artPieceObject.id,
     );
 
@@ -38,8 +38,6 @@ export default function cart() {
     (acc, piece) => acc + piece.quantity,
     0,
   );
-  //console.log(totalArtPieces);
-
   return (
     <>
       <h1>These Items are in your Cart</h1>
@@ -63,6 +61,7 @@ export default function cart() {
                   <p>quantity: {artPiece.quantity}</p>
                 </Link>
               </Fragment>
+              <button>Remove item(s)</button>
             </>
           );
         })}
