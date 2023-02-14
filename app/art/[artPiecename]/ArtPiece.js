@@ -52,7 +52,7 @@ export default function ArtPiece(props) {
           setStringifiedCookie('cart', artPiecesinCookies);
         }}
       >
-        +⭐️
+        Add to Cart
       </button>
       <button
         onClick={() => {

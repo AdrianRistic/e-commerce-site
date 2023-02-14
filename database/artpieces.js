@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-
 export const artPieces = [
   {
     id: 1,

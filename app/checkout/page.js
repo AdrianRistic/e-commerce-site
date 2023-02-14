@@ -1,18 +1,33 @@
-import { cookies } from 'next/headers';
+'use client';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { artPieces } from '../../database/artpieces';
 
 export default function checkOut() {
-  const cart = cookies().get('cart');
+  const [cart, setCart] = useState([]);
 
-  let cartParsed = [];
+  useEffect(() => {
+    const cartCookie = Cookies.get('cart');
+    if (cartCookie) {
+      setCart(JSON.parse(cartCookie));
+    }
+  }, []);
 
-  if (cart) {
-    cartParsed = JSON.parse(cart.value);
-  }
+  const handleConfirmOrder = () => {
+    const inputs = document.querySelectorAll('input');
+    const allInputsFilled = Array.from(inputs).every((input) => input.value);
+
+    if (!allInputsFilled) {
+      alert('Please fill out all input fields before confirming the order.');
+      return;
+    }
+  };
 
   const artPiecesWithquantity = artPieces.map((artPiece) => {
     const artPieceWithquantity = { ...artPiece, quantity: 0 };
-    const artPieceinCoookie = cartParsed.find(
+    const artPieceinCoookie = cart.find(
       (artPieceObject) => artPiece.id === artPieceObject.id,
     );
 
@@ -62,7 +77,8 @@ export default function checkOut() {
       <input></input>
       <p>Credit Card Security Code:</p>
       <input></input>
-      <button>Confirm order</button>
+
+      <button onClick={handleConfirmOrder}>Confirm order</button>
     </>
   );
 }
